@@ -70,7 +70,7 @@ int altaSalon(eSalon cadena[], int posicion) {
 					cadena[posicion].isEmpty = 0;
 					rtn = 1;
 
-					printf("Id Pantalla: %d\n", cadena[posicion].idSalon);
+					printf("Id Salon: %d\n", cadena[posicion].idSalon);
 					printf("Nombre: %s\n", cadena[posicion].nombre);
 					printf("Direccion: %s\n", cadena[posicion].direccion);
 					printf("Tipo: %d\n", cadena[posicion].tipoDeSalon);

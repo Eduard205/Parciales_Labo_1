@@ -12,6 +12,8 @@
 #include <ctype.h>
 #include <string.h>
 #include "utn.h"
+#define SHOPPING 1
+#define LOCAL 2
 
 typedef struct {
 	int idSalon;

@@ -12,6 +12,8 @@
 #include <ctype.h>
 #include <string.h>
 #include "utn.h"
+#define MONO 1
+#define ESTEREO 2
 
 typedef struct {
 	int idSalon;
