@@ -12,28 +12,28 @@
 #include <stdlib.h>
 #include <ctype.h>
 #include <string.h>
+
+#include "eSalon.h"
 #include "utn.h"
-#include "ePantalla.h"
-//#include "eContratacion.h"
-#define TAM 100
+#include "eArcade.h"
+#define CANT_SALONES 100
+#define CANT_ARCADES 1000
 
 int main(void) {
 	setbuf(stdout, NULL);
 
-	ePantalla listaPantallas[TAM];
-	//eContratacion listaContrataciones[TAM];
+	eSalon listaSalones[CANT_SALONES];
+	eArcade listaArcades[CANT_ARCADES];
 	int opcion;
 	char resp= 's';
 	int posicion;
 	int criterioDeOrdenamiento;
 	int flagOpcion1 = 0;
 
-	//char cuit[14];
 
-	inicializarPantalla(listaPantallas, TAM);
-//	inicializarContratacion(listaContrataciones, TAM);
-	//utn_pedirCuit(cuit,"\nIngrese CUIT: ", "\nError en ingreso de CUIT: ", 3);
-	//printf("\n%s",cuit);
+	inicializarSalon(listaSalones, CANT_SALONES);
+	inicializarArcade(listaArcades, CANT_ARCADES);
+
 
 	do {
 		mostrarMenu(&opcion);
@@ -54,9 +54,9 @@ int main(void) {
 			switch (opcion) {
 
 			case 1:
-				 if(buscarLibrePantalla(listaPantallas, &posicion, TAM) != -1)
+				 if(buscarLibreSalon(listaSalones, &posicion, CANT_SALONES) != -1)
 					{
-						if(altaPantalla(listaPantallas, posicion)==1){
+						if(altaSalon(listaSalones, posicion)==1){
 							flagOpcion1 = 1;
 						}
 						else{
@@ -68,7 +68,7 @@ int main(void) {
 
 			case 2:
 				if(flagOpcion1 ==1){
-				if(modificarPantalla(listaPantallas, TAM)==0){
+				if(modificarSalon(listaSalones, CANT_SALONES)==0){
 					printf("\nError, NO se modifico la pantalla");
 				}
 				}
@@ -79,7 +79,7 @@ int main(void) {
 
 			case 3:
 				if(flagOpcion1 ==1){
-				if(bajaPantalla(listaPantallas, TAM)==0){
+				if(bajaSalon(listaSalones, CANT_SALONES)==0){
 					printf("Error, NO se dio de baja la pantalla");
 				}
 				}
@@ -100,8 +100,8 @@ int main(void) {
 								scanf("%d", &criterioDeOrdenamiento);
 										}
 
-				ordenarPantallas(listaPantallas, TAM, criterioDeOrdenamiento);
-				if(mostrarPantallas(listaPantallas, TAM)){
+				ordenarSalones(listaSalones, CANT_SALONES, criterioDeOrdenamiento);
+				if(mostrarSalones(listaSalones, CANT_SALONES)){
 					system("pause");
 				}
 				else{
