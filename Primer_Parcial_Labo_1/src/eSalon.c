@@ -15,15 +15,18 @@ static int obtenerId(void) {
 }
 
 int inicializarSalon(eSalon cadena[], int tam) {
+
 	int devolucion = -1;
+
 	if (cadena != NULL && tam > 0) {
 		for (int i = 0; i < tam; i++) {
 			cadena[i].isEmpty = 1;
+/*
 			cadena[i].idSalon = 0;
 			strcpy(cadena[i].nombre, " ");
 			strcpy(cadena[i].direccion, " ");
 			cadena[i].tipoDeSalon = 0;
-
+*/
 		}
 		devolucion = 0;
 	}

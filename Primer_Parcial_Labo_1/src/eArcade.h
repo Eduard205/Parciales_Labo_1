@@ -12,14 +12,16 @@
 #include <ctype.h>
 #include <string.h>
 #include "utn.h"
+#define NACIONALIDAD_LEN 20
+#define NOMBRE_DE_JUEGO_LEN 63
 #define MONO 1
 #define ESTEREO 2
 
 typedef struct {
 	int idSalon;
 	int idArcade;
-	char nacionalidad[20];
-	char nombreDelJuego[63];
+	char nacionalidad[NACIONALIDAD_LEN];
+	char nombreDelJuego[NOMBRE_DE_JUEGO_LEN];
 	int cantidadDeJugadores;
 	int cantidadMaxDeFichas;
 	int tipoDeSonido;   //1-Mono / 2-Estereo//
@@ -37,6 +39,8 @@ void mostrarUnArcade(eArcade cadena);
 int mostrarArcades(eArcade cadena[], int tam);
 int ordenarArcades(eArcade cadena[], int tam, int criterio);
 
+int arcade_altaForzada(eArcade cadena[], int posicion, int idSalon /*int idArcade */, char* nacionalidad, char* nombreDelJuego, int cantidadDeJugadores, int cantidadMaxDeFichas,
+int tipoDeSonido);
 
 
 #endif /* EARCADE_H_ */

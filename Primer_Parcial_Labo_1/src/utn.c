@@ -350,7 +350,7 @@ int utn_pedirCuit(char auxiliar[], char *mensaje, char *mensajeError,
 	return retorno;
 }
 /**
- *\brief Muestra el menu y escribe en la direccion de memoria de una variable el numero de la opción ingresada.
+ *\brief Muestra el menu y escribe en la direccion de memoria de una variable el numero de la opcion ingresada.
  *\param opcion recibe el puntero de un Int.
  *\return void.
  */

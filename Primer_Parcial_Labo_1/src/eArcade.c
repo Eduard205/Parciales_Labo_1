@@ -4,6 +4,7 @@
  */
 
 #include "eArcade.h"
+//static const char TXT_TIPOS[4][7]={"MONO","ESTEREO"};
 
 static int obtenerId(void);
 
@@ -15,18 +16,21 @@ static int obtenerId(void) {
 }
 
 int inicializarArcade(eArcade cadena[], int tam) {
+
 	int devolucion = -1;
+
 	if (cadena != NULL && tam > 0) {
 		for (int i = 0; i < tam; i++) {
 			cadena[i].isEmpty = 1;
-			cadena[i].idArcade = 0;
-			cadena[i].idSalon = 0;
-			strcpy(cadena[i].nacionalidad, " ");
-			strcpy(cadena[i].nombreDelJuego, " ");
-			cadena[i].cantidadDeJugadores = 0;
-			cadena[i].cantidadMaxDeFichas = 0;
-			cadena[i].tipoDeSonido = 0;
-
+			/*
+			 cadena[i].idArcade = 0;
+			 cadena[i].idSalon = 0;
+			 strcpy(cadena[i].nacionalidad, " ");
+			 strcpy(cadena[i].nombreDelJuego, " ");
+			 cadena[i].cantidadDeJugadores = 0;
+			 cadena[i].cantidadMaxDeFichas = 0;
+			 cadena[i].tipoDeSonido = 0;
+			 */
 		}
 		devolucion = 0;
 	}
@@ -52,58 +56,47 @@ int buscarLibreArcade(eArcade cadena[], int *posicion, int tam) {
 int altaArcade(eArcade cadena[], int posicion) {
 
 	int rtn = 0;
-	char auxChar1[50];
-	char auxChar2[63];
-	int auxInt1;
-	int auxInt2;
-	int auxInt3;
-	int auxInt4;
+	eArcade bufferAux;
 
-	if (pedirEntero(&auxInt1, 1, 100, 3, "Ingrese Id del Salon: ",
-						"Error, reingrese Id del Salon: ") == 1) {
+	if (pedirEntero(&bufferAux.idSalon, 1, 100, 3, "Ingrese Id del Salon: ",
+			"Error, reingrese Id del Salon: ") == 1
 
-	if (pedirCadena(auxChar1, 20, 3, "Ingrese Nacionalidad: ",
-			"Error reingrese Nacionalidad: ") == 1) {
+			&& pedirCadena(bufferAux.nacionalidad, 20, 3,
+					"Ingrese Nacionalidad: ", "Error reingrese Nacionalidad: ")
+					== 1
+			&& pedirCadena(bufferAux.nombreDelJuego, 63, 3,
+					"Ingrese Nombre del Juego: ",
+					"Error, reingrese Nombre del Juego: ") == 1
 
-		if (pedirCadena(auxChar2, 63, 3, "Ingrese Nombre del Juego: ",
-				"Error, reingrese Nombre del Juego: ") == 1) {
+			&& pedirEntero(&bufferAux.cantidadDeJugadores, 1, 2, 3,
+					"Ingrese cantidadd de jugadores: ",
+					"Error, reingrese cantidad de jugadores: ") == 1
 
-			if (pedirEntero(&auxInt2, 1, 2, 3, "Ingrese cantidadd de jugadores: ",
-					"Error, reingrese cantidad de jugadores: ") == 1) {
+			&& pedirEntero(&bufferAux.cantidadMaxDeFichas, 1, 500, 3,
+					"Ingrese cantidad maxima de fichas: ",
+					"Error, reingrese cantidad maxima de fichas: ") == 1
 
-				if (pedirEntero(&auxInt3, 1, 500, 3, "Ingrese cantidad maxima de fichas: ",
-						"Error, reingrese cantidad maxima de fichas: ")==1) {
+			&& pedirEntero(&bufferAux.tipoDeSonido, 1, 2, 3,
+					"Ingrese tipo de Sonido (1-Mono, 2-Estereo): ",
+					"Error, reingrese tipo de Sonido (1-Mono, 2-Estereo): ")
+					== 1) {
 
-					if (pedirEntero(&auxInt4, 1, 2, 3, "Ingrese tipo de Sonido (1-Mono, 2-Estereo): ",
-							"Error, reingrese tipo de Sonido (1-Mono, 2-Estereo): ")==1){
+		bufferAux.idArcade = obtenerId();
+		cadena[posicion] = bufferAux;
+		cadena[posicion].isEmpty = 0;
+		rtn = 1;
 
-					cadena[posicion].idArcade = obtenerId();
-					cadena[posicion].idSalon = auxInt1;
-					strcpy(cadena[posicion].nacionalidad, auxChar1);
-					strcpy(cadena[posicion].nombreDelJuego, auxChar2);
-					cadena[posicion].cantidadDeJugadores = auxInt2;
-					cadena[posicion].cantidadMaxDeFichas = auxInt3;
-					cadena[posicion].tipoDeSonido = auxInt4;
-					cadena[posicion].isEmpty = 0;
-					rtn = 1;
-
-					printf("Id Salon: %d\n", cadena[posicion].idSalon);
-					printf("Id Arcade: %d\n", cadena[posicion].idArcade);
-					printf("Nacionalidad: %s\n", cadena[posicion].nacionalidad);
-					printf("Nombre del Juego: %s\n", cadena[posicion].nombreDelJuego);
-					printf("Cantidad de Jugadores: %d\n", cadena[posicion].cantidadDeJugadores);
-					printf("Cantidad Maxima de Fichas: %d\n", cadena[posicion].cantidadMaxDeFichas);
-					printf("Tipo de Sonido: %d\n", cadena[posicion].tipoDeSonido);
-
-				}
-
-			}
-		}
+		printf("Id Salon: %d\n", cadena[posicion].idSalon);
+		printf("Id Arcade: %d\n", cadena[posicion].idArcade);
+		printf("Nacionalidad: %s\n", cadena[posicion].nacionalidad);
+		printf("Nombre del Juego: %s\n", cadena[posicion].nombreDelJuego);
+		printf("Cantidad de Jugadores: %d\n",
+				cadena[posicion].cantidadDeJugadores);
+		printf("Cantidad Maxima de Fichas: %d\n",
+				cadena[posicion].cantidadMaxDeFichas);
+		printf("Tipo de Sonido: %d\n", cadena[posicion].tipoDeSonido);
 
 	}
-	}
-	}
-	//printf("isEmpty: %d\n", array[posicion].isEmpty);
 
 	return rtn;
 }
@@ -126,24 +119,24 @@ int buscarArcade(eArcade cadena[], int tam, int id) {
 int modificarUnArcade(eArcade *cadena) {
 
 	int rtn = 0;
-	char auxChar[63];
-	int auxInt;
+	eArcade bufferAux;
 
-	if (pedirCadena(auxChar, 63, 3, "Ingrese Nombre del Juego: ",
-					"Error, reingrese Nombre del Juego: ") == 1) {
+	if (pedirCadena(bufferAux.nombreDelJuego, 63, 3,
+			"Ingrese Nombre del Juego: ", "Error, reingrese Nombre del Juego: ")
+			== 1) {
 
-		strcpy(cadena->nombreDelJuego, auxChar);
+		strncpy(cadena->nombreDelJuego, bufferAux.nombreDelJuego,
+				sizeof(bufferAux.nombreDelJuego));
 		rtn = 1;
-
 	}
 
-	if (pedirEntero(&auxInt, 1, 2, 3, "Ingrese cantidad de jugadores: ",
-						"Error, reingrese cantidad de jugadores: ") == 1) {
+	if (pedirEntero(&bufferAux.cantidadDeJugadores, 1, 2, 3,
+			"Ingrese cantidad de jugadores: ",
+			"Error, reingrese cantidad de jugadores: ") == 1) {
 
-			cadena->cantidadDeJugadores = auxInt;
-			rtn = 1;
+		cadena->cantidadDeJugadores = bufferAux.cantidadDeJugadores;
+		rtn = 1;
 	}
-
 
 	return rtn;
 }
@@ -156,24 +149,29 @@ int modificarArcade(eArcade cadena[], int tam) {
 
 	if (pedirEntero(&idAux, 1, 1000, 3,
 			"Ingrese el id del Arcade a modificar: ",
-			"Error. Ingrese un Id de Arcade entre (1-1000): ") == 1) {
-		if (buscarArcade(cadena, tam, idAux) == -1) {
-			printf("No existe el id ingresado\n ");
+			"Error. Ingrese un Id de Arcade entre (1-1000): ") == 1
+			&& buscarArcade(cadena, tam, idAux) != -1) {
+
+		posicion = buscarArcade(cadena, tam, idAux);
+		if (modificarUnArcade(&cadena[posicion]) == 1) {
+			rtn = 1;
 		} else {
-			posicion = buscarArcade(cadena, tam, idAux);
-			if (modificarUnArcade(&cadena[posicion]) == 1) {
-				rtn = 1;
-			} else {
-				printf("Error, no se modificaron los campos");
-			}
+			printf("Error, no se modificaron los campos");
+			rtn = 0;
 		}
+
+	} else {
+		printf("No existe el id ingresado\n ");
+		rtn = 0;
+
 	}
 
 	if (rtn == 1) {
-		printf("Se modifico el arcade con el id %d\n", cadena[posicion].idArcade);
+		printf("Se modifico el arcade con el id %d\n",
+				cadena[posicion].idArcade);
 		printf("Nuevo Nombre del Juego: %s\n", cadena[posicion].nombreDelJuego);
-		printf("Nueva Cantidad de Jugadores: %d\n", cadena[posicion].cantidadDeJugadores);
-
+		printf("Nueva Cantidad de Jugadores: %d\n",
+				cadena[posicion].cantidadDeJugadores);
 	}
 
 	return rtn;
@@ -187,28 +185,30 @@ int bajaArcade(eArcade cadena[], int tam) {
 
 	if (pedirEntero(&idAux, 1, 1000, 3,
 			"Ingrese el id del Arcade a dar de baja: ",
-			"Error. Ingrese un Id de Arcade entre (1-1000): ") == 1) {
-		if (buscarArcade(cadena, tam, idAux) == -1) {
-			printf("No existe el id ingresado\n ");
-		} else {
-			posicion = buscarArcade(cadena, tam, idAux);
-			cadena[posicion].isEmpty = 1;
-			rtn = 1;
-		}
+			"Error. Ingrese un Id de Arcade entre (1-1000): ") == 1
+			&& buscarArcade(cadena, tam, idAux) != -1) {
+
+		posicion = buscarArcade(cadena, tam, idAux);
+		cadena[posicion].isEmpty = 1;
+		rtn = 1;
+
+	} else {
+		printf("No existe el id ingresado\n ");
+		rtn = 0;
 	}
 
 	if (rtn == 1) {
 		printf("Se dio de baja al Arcade con el id %d\n",
 				cadena[posicion].idArcade);
-
 		printf("Id Salon: %d\n", cadena[posicion].idSalon);
 		printf("Id Arcade: %d\n", cadena[posicion].idArcade);
 		printf("Nacionalidad: %s\n", cadena[posicion].nacionalidad);
 		printf("Nombre del Juego: %s\n", cadena[posicion].nombreDelJuego);
-		printf("Cantidad de Jugadores: %d\n", cadena[posicion].cantidadDeJugadores);
-		printf("Cantidad Maxima de Fichas: %d\n", cadena[posicion].cantidadMaxDeFichas);
+		printf("Cantidad de Jugadores: %d\n",
+				cadena[posicion].cantidadDeJugadores);
+		printf("Cantidad Maxima de Fichas: %d\n",
+				cadena[posicion].cantidadMaxDeFichas);
 		printf("Tipo de Sonido: %d\n", cadena[posicion].tipoDeSonido);
-
 	}
 
 	return rtn;
@@ -216,18 +216,34 @@ int bajaArcade(eArcade cadena[], int tam) {
 
 void mostrarUnArcade(eArcade cadena) {
 
-	printf("%5d%5d%10s%10s%7d%7d%7d\n", cadena.idSalon, cadena.idArcade,cadena.nacionalidad, cadena.nombreDelJuego,
-			cadena.cantidadDeJugadores, cadena.cantidadMaxDeFichas, cadena.tipoDeSonido);
+	/*
+	 printf("%5d%5d%10s%10s%7d%7d%7d\n", cadena.idSalon, cadena.idArcade,
+	 cadena.nacionalidad, cadena.nombreDelJuego,
+	 cadena.cantidadDeJugadores, cadena.cantidadMaxDeFichas,
+	 cadena.tipoDeSonido);
+	 */
+	printf(
+			"ID SALON: %d - ID ARCADE: %d - NACIONALIDAD: %s - NOMBRE DEL JUEGO: %s - CANT DE JUGADORES: %d - CANT MAX FICHAS: %d - TIPO DE SONIDO: %d\n",
+			cadena.idSalon, cadena.idArcade, cadena.nacionalidad,
+			cadena.nombreDelJuego, cadena.cantidadDeJugadores,
+			cadena.cantidadMaxDeFichas, cadena.tipoDeSonido);
 
 }
 
 int mostrarArcades(eArcade cadena[], int tam) {
 	int i;
 	int rtn = 0;
-
-	printf("\n\t> LISTADO ARCADES\n");
-	printf("%5s%5s%10s%15s%5s%5s%10s\n", "ID SALON","ID ARCADE","NACIONALIDAD","NOMBRE DEL JUEGO","CANT DE JUGADORES","CANT MAX FICHAS","TIPO DE SONIDO");
-
+	/*
+	 printf("\n\t> LISTADO ARCADES\n");
+	 printf("%5s%5s%10s%15s%5s%5s%10s\n", "ID SALON", "ID ARCADE",
+	 "NACIONALIDAD", "NOMBRE DEL JUEGO", "CANT DE JUGADORES",
+	 "CANT MAX FICHAS", "TIPO DE SONIDO");
+	 */
+	printf("\n\t*************** LISTADO ARCADES ***************\n");
+	/*printf("%s\n - %s\n - %s\n - %s\n - %s\n - %s\n - %s\n", "ID SALON",
+			"ID ARCADE", "NACIONALIDAD", "NOMBRE DEL JUEGO",
+			"CANT DE JUGADORES", "CANT MAX FICHAS", "TIPO DE SONIDO");
+*/
 	if (cadena != NULL && tam > 0) {
 		for (i = 0; i < tam; i++) {
 			if (cadena[i].isEmpty == 0) {
@@ -282,5 +298,69 @@ int ordenarArcades(eArcade cadena[], int tam, int criterio) {
 			break;
 		}
 	}
+	return rtn;
+}
+
+int arcade_altaForzada(eArcade cadena[], int posicion,
+		int idSalon /*int idArcade */, char *nacionalidad, char *nombreDelJuego,
+		int cantidadDeJugadores, int cantidadMaxDeFichas, int tipoDeSonido) {
+
+	int rtn = 0;
+	eArcade bufferAux;
+	/*
+	 if (pedirEntero(&bufferAux.idSalon, 1, 100, 3, "Ingrese Id del Salon: ",
+	 "Error, reingrese Id del Salon: ") == 1
+
+	 && pedirCadena(bufferAux.nacionalidad, 20, 3,
+	 "Ingrese Nacionalidad: ", "Error reingrese Nacionalidad: ")
+	 == 1
+	 && pedirCadena(bufferAux.nombreDelJuego, 63, 3,
+	 "Ingrese Nombre del Juego: ",
+	 "Error, reingrese Nombre del Juego: ") == 1
+
+	 && pedirEntero(&bufferAux.cantidadDeJugadores, 1, 2, 3,
+	 "Ingrese cantidadd de jugadores: ",
+	 "Error, reingrese cantidad de jugadores: ") == 1
+
+	 && pedirEntero(&bufferAux.cantidadMaxDeFichas, 1, 500, 3,
+	 "Ingrese cantidad maxima de fichas: ",
+	 "Error, reingrese cantidad maxima de fichas: ") == 1
+
+	 && pedirEntero(&bufferAux.tipoDeSonido, 1, 2, 3,
+	 "Ingrese tipo de Sonido (1-Mono, 2-Estereo): ",
+	 "Error, reingrese tipo de Sonido (1-Mono, 2-Estereo): ")
+	 == 1) {
+	 */
+	if (cadena != NULL && posicion >= 0 && idSalon > 0 && nacionalidad != NULL
+			&& nombreDelJuego != NULL && cantidadDeJugadores > 0
+			&& cantidadMaxDeFichas > 0) {
+
+		bufferAux.idSalon = idSalon;
+		bufferAux.idArcade = obtenerId();
+		strncpy(bufferAux.nacionalidad, nacionalidad,
+		NACIONALIDAD_LEN);
+		strncpy(bufferAux.nombreDelJuego, nombreDelJuego,
+		NOMBRE_DE_JUEGO_LEN);
+		bufferAux.cantidadDeJugadores = cantidadDeJugadores;
+		bufferAux.cantidadMaxDeFichas = cantidadMaxDeFichas;
+		bufferAux.tipoDeSonido = tipoDeSonido;
+		bufferAux.isEmpty = 0;
+		cadena[posicion] = bufferAux;
+		rtn = 1;
+	}
+
+	if (rtn == 1) {
+
+		printf("Id Salon: %d\n", cadena[posicion].idSalon);
+		printf("Id Arcade: %d\n", cadena[posicion].idArcade);
+		printf("Nacionalidad: %s\n", cadena[posicion].nacionalidad);
+		printf("Nombre del Juego: %s\n", cadena[posicion].nombreDelJuego);
+		printf("Cantidad de Jugadores: %d\n",
+				cadena[posicion].cantidadDeJugadores);
+		printf("Cantidad Maxima de Fichas: %d\n",
+				cadena[posicion].cantidadMaxDeFichas);
+		printf("Tipo de Sonido: %d\n", cadena[posicion].tipoDeSonido);
+	}
+
 	return rtn;
 }
