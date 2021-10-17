@@ -1,6 +1,6 @@
 /*
  * eArcade.h
- *Agrupa funciones que permiten trabajar con los datos almacenados en la estructura Salon,
+ *Agrupa funciones que permiten trabajar con los datos almacenados en la estructura Arcade,
  *la cual representa los datos de una empresa.
  *
  */

@@ -1,6 +1,6 @@
 /*
- * eSalon.c
- *Desarrollo de funciones de la biblioteca eSalon.h
+ * eArcade.c
+ *Desarrollo de funciones de la biblioteca eArcade.h
  */
 
 #include "eArcade.h"
