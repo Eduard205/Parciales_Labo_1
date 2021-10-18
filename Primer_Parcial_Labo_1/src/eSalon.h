@@ -39,6 +39,7 @@ int mostrarSalones(eSalon cadena[], int tam);
 int ordenarSalones(eSalon cadena[], int tam, int criterio);
 void imprimirUnSalonParaEliminar(eSalon cadena);
 int imprimirSalonesParaElimar(eSalon cadena[], int tam);
+int salon_Obtener_idSalon(eSalon cadena[], int tam, int *idSalonValidado);
 
 int salon_altaForzada(eSalon cadena[], int posicion, char *nombre, char *direccion, int tipoDeSalon);
 

@@ -43,6 +43,27 @@ int buscarLibreSalon(eSalon cadena[], int *posicion, int tam) {
 	return rtn;
 }
 
+int salon_Obtener_idSalon(eSalon cadena[], int tam, int *idSalonValidado){
+
+	int rtn=0;
+	eSalon bufferAux;
+
+	if (pedirEntero(&bufferAux.idSalon, 1, 100, 3, "Ingrese Id del Salon: ",
+				"Error, reingrese Id del Salon: ") == 1 && buscarSalon(cadena,tam, bufferAux.idSalon)!=-1){
+
+			*idSalonValidado= bufferAux.idSalon;
+			rtn=1;
+
+		printf("El ID de Salon (%d) es VALIDO\n", *idSalonValidado);
+
+		}
+	else{
+		printf("El ID de Salon ingresado NO existe");
+	}
+
+	return rtn;
+}
+
 int altaSalon(eSalon cadena[], int posicion) {
 
 	int rtn = 0;

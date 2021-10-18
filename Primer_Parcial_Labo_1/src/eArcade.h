@@ -32,14 +32,16 @@ typedef struct {
 
 int inicializarArcade(eArcade cadena[], int tam);
 int buscarLibreArcade(eArcade cadena[], int *posicion, int tam);
-int altaArcade(eArcade cadena[], int posicion);
+int altaArcade(eArcade cadena[], int posicion, int* idSalonValidado);
 int buscarArcade(eArcade cadena[], int tam, int id);
 int modificarArcade(eArcade cadena[], int tam);
-int modificarUnArcade(eArcade *cadena);
+int modificarUnArcade(eArcade *cadena, int tam);
 int bajaArcade(eArcade cadena[], int tam);
 int bajaArcadesPorIdSalon(eArcade cadena[], int tam, int idSalonEliminado);
 void mostrarUnArcade(eArcade cadena);
+void mostrarNombreDeUnJuego(eArcade cadena);
 int mostrarArcades(eArcade cadena[], int tam);
+int arcades_ListarJuegos(eArcade cadena[], int tam);
 int ordenarArcades(eArcade cadena[], int tam, int criterio);
 
 int arcade_altaForzada(eArcade cadena[], int posicion, int idSalon /*int idArcade */, char* nacionalidad, char* nombreDelJuego, int cantidadDeJugadores, int cantidadMaxDeFichas,

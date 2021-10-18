@@ -27,9 +27,11 @@ int main(void) {
 	int opcion;
 	char resp= 's';
 	int posicion;
-	int criterioDeOrdenamiento;
+	//int criterioDeOrdenamiento;
 	int flagOpcion1 = 1;///CAMBIAR VALOR A 0 AL TERMINAR
 	int idSalonEliminado;
+	int idSalonValidado;
+	//int flagArcadeAlta=0;
 
 
 	inicializarSalon(listaSalones, CANT_SALONES);
@@ -43,25 +45,14 @@ int main(void) {
 	arcade_altaForzada(listaArcades, 2, 1, "EEUU", "CALL DUTY", 4, 100, ESTEREO);
 	arcade_altaForzada(listaArcades, 0, 3, "JAPON", "POKEMON", 2, 200, MONO);
 	arcade_altaForzada(listaArcades, 1, 2, "CHINA", "PACMAN", 1, 150, ESTEREO);
-	mostrarArcades(listaArcades, CANT_ARCADES);
+	arcade_altaForzada(listaArcades, 3, 2, "JAPON", "POKEMON", 2, 200, MONO);
+
+	//mostrarArcades(listaArcades, CANT_ARCADES);
 
 
 	do {
 		mostrarMenu(&opcion);
-		/*	printf("\nIngrese una opcion del menu:"
-					"\n1-Alta de Pantalla"
-					"\n2-Modificar Pantalla"
-					"\n3-Baja Pantalla"
-					"\n4-Informes"
-					"\n5-Salir\n");
-			scanf("%d", &opcion);
 
-			while (opcion < 1 || opcion > 5) {
-				printf(
-						"Ingreso una opción invalida, las opciones disponibles son (1, 2, 3, 4, 5): ");
-				scanf("%d", &opcion);
-			}
-*/
 			switch (opcion) {
 
 			case 1:
@@ -74,17 +65,6 @@ int main(void) {
 							printf("Error en el alta");
 						}
 					}
-				 /*
-				 if(buscarLibreArcade(listaArcades, &posicion, CANT_ARCADES) != -1)
-				 					{
-				 						if(altaArcade(listaArcades, posicion)==1){
-				 							flagOpcion1 = 1;
-				 						}
-				 						else{
-				 							printf("Error en el alta");
-				 						}
-				 					}
-				 	*/
 				break;
 
 
@@ -122,6 +102,21 @@ int main(void) {
 				break;
 			case 4:
 				if(flagOpcion1 ==1){
+				if(buscarLibreArcade(listaArcades, &posicion, CANT_ARCADES) != -1 && salon_Obtener_idSalon(listaSalones, CANT_SALONES, &idSalonValidado)==1){
+
+					if(altaArcade(listaArcades, posicion, &idSalonValidado)==1){
+						//flagArcadeAlta = 1;
+						}
+						else{
+								printf("Error en el alta");
+							}
+						}
+				}
+				else{
+					printf("No ha dado de alta Salones, ingrese a la opción 1");
+					}
+				/*
+				if(flagOpcion1 ==1){
 				printf("\nIngrese criterio de ordenamiento:"
 						"\n1-Ordenar de forma descendente lista de pantallas por tipo"
 						"\n-1-Ordenar de forma ascendente lista de pantallas por tipo");
@@ -144,10 +139,31 @@ int main(void) {
 				else{
 				printf("No ha dado de alta pantallas, ingrese a la opción 1");
 				}
+				*/
+
 				break;
 
-
 			case 5:
+					mostrarArcades(listaArcades, CANT_ARCADES);
+					modificarArcade(listaArcades, CANT_ARCADES);
+
+				break;
+
+			case 6:
+					mostrarArcades(listaArcades, CANT_ARCADES);
+					bajaArcade(listaArcades, CANT_ARCADES);
+
+				break;
+
+			case 7:
+					mostrarArcades(listaArcades, CANT_ARCADES);
+				break;
+
+			case 8:
+					arcades_ListarJuegos(listaArcades, CANT_ARCADES);
+				break;
+
+			case 10:
 				printf("A salido del programa");
 				resp = !'s';
 				break;
