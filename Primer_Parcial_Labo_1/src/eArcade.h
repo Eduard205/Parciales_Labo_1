@@ -12,6 +12,8 @@
 #include <ctype.h>
 #include <string.h>
 #include "utn.h"
+#define LIBRE 1
+#define OCUPADO 0
 #define NACIONALIDAD_LEN 20
 #define NOMBRE_DE_JUEGO_LEN 63
 #define MONO 1
@@ -35,6 +37,7 @@ int buscarArcade(eArcade cadena[], int tam, int id);
 int modificarArcade(eArcade cadena[], int tam);
 int modificarUnArcade(eArcade *cadena);
 int bajaArcade(eArcade cadena[], int tam);
+int bajaArcadesPorIdSalon(eArcade cadena[], int tam, int idSalonEliminado);
 void mostrarUnArcade(eArcade cadena);
 int mostrarArcades(eArcade cadena[], int tam);
 int ordenarArcades(eArcade cadena[], int tam, int criterio);

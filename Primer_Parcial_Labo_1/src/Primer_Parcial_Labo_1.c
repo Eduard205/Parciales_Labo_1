@@ -28,15 +28,21 @@ int main(void) {
 	char resp= 's';
 	int posicion;
 	int criterioDeOrdenamiento;
-	int flagOpcion1 = 0;
+	int flagOpcion1 = 1;///CAMBIAR VALOR A 0 AL TERMINAR
+	int idSalonEliminado;
 
 
 	inicializarSalon(listaSalones, CANT_SALONES);
 	inicializarArcade(listaArcades, CANT_ARCADES);
 
-	arcade_altaForzada(listaArcades, 0, 1, "EEUU", "CALL DUTY", 4, 100, ESTEREO);
-	arcade_altaForzada(listaArcades, 1, 5, "JAPON", "POKEMON", 2, 200, MONO);
-	arcade_altaForzada(listaArcades, 2, 4, "CHINA", "PACMAN", 1, 150, ESTEREO);
+	salon_altaForzada(listaSalones, 2, "SALON A", "CABA", SHOPPING);
+	salon_altaForzada(listaSalones, 1, "SALON B", "NORDELTA", LOCAL);
+	salon_altaForzada(listaSalones, 0, "SALON C", "OLIVOS", SHOPPING);
+	//mostrarSalones(listaSalones, CANT_SALONES);
+
+	arcade_altaForzada(listaArcades, 2, 1, "EEUU", "CALL DUTY", 4, 100, ESTEREO);
+	arcade_altaForzada(listaArcades, 0, 3, "JAPON", "POKEMON", 2, 200, MONO);
+	arcade_altaForzada(listaArcades, 1, 2, "CHINA", "PACMAN", 1, 150, ESTEREO);
 	mostrarArcades(listaArcades, CANT_ARCADES);
 
 
@@ -59,7 +65,6 @@ int main(void) {
 			switch (opcion) {
 
 			case 1:
-				/*
 				 if(buscarLibreSalon(listaSalones, &posicion, CANT_SALONES) != -1)
 					{
 						if(altaSalon(listaSalones, posicion)==1){
@@ -69,7 +74,7 @@ int main(void) {
 							printf("Error en el alta");
 						}
 					}
-				 */
+				 /*
 				 if(buscarLibreArcade(listaArcades, &posicion, CANT_ARCADES) != -1)
 				 					{
 				 						if(altaArcade(listaArcades, posicion)==1){
@@ -79,10 +84,21 @@ int main(void) {
 				 							printf("Error en el alta");
 				 						}
 				 					}
+				 	*/
 				break;
 
 
 			case 2:
+				if(flagOpcion1 ==1){
+					imprimirSalonesParaElimar(listaSalones,CANT_SALONES);
+					if(bajaSalon(listaSalones, CANT_SALONES,&idSalonEliminado)==1){
+						bajaArcadesPorIdSalon(listaArcades, CANT_ARCADES, idSalonEliminado);
+						}
+					}
+					else{
+						printf("No ha dado de alta Salones, ingrese a la opción 1");
+					}
+				/*
 				if(flagOpcion1 ==1){
 				if(modificarSalon(listaSalones, CANT_SALONES)==0){
 					printf("\nError, NO se modifico el Salon");
@@ -91,16 +107,17 @@ int main(void) {
 				else{
 					printf("No ha dado de alta pantallas, ingrese a la opción 1");
 				}
+				*/
 				break;
 
 			case 3:
 				if(flagOpcion1 ==1){
-				if(bajaSalon(listaSalones, CANT_SALONES)==0){
-					printf("Error, NO se dio de baja la pantalla");
+				if(mostrarSalones(listaSalones, CANT_SALONES)==0){
+					printf("Error, NO se encontraron Salones para imprimir");
 				}
 				}
 				else{
-					printf("No ha dado de alta pantallas, ingrese a la opción 1");
+					printf("No ha dado de alta Salones, ingrese a la opción 1");
 				}
 				break;
 			case 4:

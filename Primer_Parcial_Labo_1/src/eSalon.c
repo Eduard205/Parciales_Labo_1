@@ -21,12 +21,6 @@ int inicializarSalon(eSalon cadena[], int tam) {
 	if (cadena != NULL && tam > 0) {
 		for (int i = 0; i < tam; i++) {
 			cadena[i].isEmpty = 1;
-/*
-			cadena[i].idSalon = 0;
-			strcpy(cadena[i].nombre, " ");
-			strcpy(cadena[i].direccion, " ");
-			cadena[i].tipoDeSalon = 0;
-*/
 		}
 		devolucion = 0;
 	}
@@ -52,36 +46,27 @@ int buscarLibreSalon(eSalon cadena[], int *posicion, int tam) {
 int altaSalon(eSalon cadena[], int posicion) {
 
 	int rtn = 0;
-	char auxChar1[100];
-	char auxChar2[100];
-	int auxInt;
+	eSalon buffer;
 
-
-	if (pedirCadena(auxChar1, 10, 3, "Ingrese nombre: ",
-			"Error reingrese nombre: ") == 1) {
-
-		if (pedirCadena(auxChar2, 15, 3, "Ingrese direccion: ",
-				"Error reingrese direccion: ") == 1) {
-
-			if (pedirEntero(&auxInt, 1, 2, 3, "Ingrese Tipo (1-Shopping, 2-Local): ",
+	if (pedirCadena(buffer.nombre, NOMBRE_LEN, 3, "Ingrese nombre: ",
+			"Error reingrese nombre: ") == 1
+			&& pedirCadena(buffer.direccion, DIRECCION_LEN, 3,
+					"Ingrese direccion: ", "Error reingrese direccion: ") == 1
+			&& pedirEntero(&buffer.tipoDeSalon, 1, 2, 3,
+					"Ingrese Tipo (1-Shopping, 2-Local): ",
 					"Error reingrese tipo (1-Shopping, 2-Local): ") == 1) {
 
-					cadena[posicion].idSalon = obtenerId();
-					strcpy(cadena[posicion].nombre, auxChar1);
-					strcpy(cadena[posicion].direccion, auxChar2);
-					cadena[posicion].tipoDeSalon = auxInt;
-					cadena[posicion].isEmpty = 0;
-					rtn = 1;
-
-					printf("Id Salon: %d\n", cadena[posicion].idSalon);
-					printf("Nombre: %s\n", cadena[posicion].nombre);
-					printf("Direccion: %s\n", cadena[posicion].direccion);
-					printf("Tipo: %d\n", cadena[posicion].tipoDeSalon);
-
-			}
+		buffer.idSalon = obtenerId();
+		cadena[posicion] = buffer;
+		cadena[posicion].isEmpty = 0;
+		rtn = 1;
 		}
 
+	if (rtn == 1) {
+		printf("Salon dado de alta\n");
+		mostrarUnSalon(cadena[posicion]);
 	}
+
 	return rtn;
 }
 
@@ -100,31 +85,21 @@ int buscarSalon(eSalon cadena[], int tam, int id) {
 	return rtn;
 }
 
-int modificarUnSalon(eSalon *cadena) {
+int modificarUnSalon(eSalon *cadena/*int posicion*/) {
 
 	int rtn = 0;
-	char auxChar1[100];
-	char auxChar2[100];
-	int auxInt;
 
+	if (pedirCadena(cadena->nombre, NOMBRE_LEN, 3, "Ingrese nombre: ",
+			"Error reingrese nombre: ") == 1
+			&& pedirCadena(cadena->direccion, DIRECCION_LEN, 3,
+					"Ingrese direccion: ", "Error reingrese direccion: ") == 1
+			&& pedirEntero(&cadena->tipoDeSalon, 1, 2, 3,
+					"Ingrese Tipo (1-Shopping, 2-Local): ",
+					"Error reingrese tipo (1-Shopping, 2-Local): ") == 1) {
 
-	if (pedirCadena(auxChar1, 10, 3, "Ingrese nombre: ",
-			"Error reingrese nombre: ") == 1) {
-
-		if (pedirCadena(auxChar2, 15, 3, "Ingrese direccion: ",
-				"Error reingrese direccion: ") == 1) {
-
-			if (pedirEntero(&auxInt, 1, 2, 3, "Ingrese Tipo (1-Shopping, 2-Local): ",
-					"Error reingrese tipo: ") == 1) {
-
-					strcpy(cadena->nombre, auxChar1);
-					strcpy(cadena->direccion, auxChar2);
-					cadena->tipoDeSalon = auxInt;
 					rtn = 1;
-			}
-		}
-
 	}
+
 	return rtn;
 }
 
@@ -134,19 +109,21 @@ int modificarSalon(eSalon cadena[], int tam) {
 	int posicion;
 	int idAux;
 
-	if (pedirEntero(&idAux, 1, 100, 3,
-			"Ingrese el id del Salon a modificar: ",
-			"Error. Ingrese un Id de Salon entre (1-100): ") == 1) {
-		if (buscarSalon(cadena, tam, idAux) == -1) {
-			printf("No existe el id ingresado\n ");
+	if (pedirEntero(&idAux, 1, 100, 3, "Ingrese el id del Salon a modificar: ",
+			"Error. Ingrese un Id de Salon entre (1-100): ") == 1
+			&& buscarSalon(cadena, tam, idAux) != -1) {
+
+		posicion = buscarSalon(cadena, tam, idAux);
+		if (modificarUnSalon(&cadena[posicion]) == 1) {
+			rtn = 1;
 		} else {
-			posicion = buscarSalon(cadena, tam, idAux);
-			if (modificarUnSalon(&cadena[posicion]) == 1) {
-				rtn = 1;
-			} else {
-				printf("Error, no se modificaron los campos");
-			}
+			printf("Error, no se modificaron los campos");
+			rtn = 0;
 		}
+
+	} else {
+		printf("No existe el id ingresado\n ");
+		rtn = 0;
 	}
 
 	if (rtn == 1) {
@@ -160,7 +137,7 @@ int modificarSalon(eSalon cadena[], int tam) {
 	return rtn;
 }
 
-int bajaSalon(eSalon cadena[], int tam) {
+int bajaSalon(eSalon cadena[], int tam, int* idSalonEliminado) {
 
 	int rtn = 0;
 	int posicion;
@@ -174,6 +151,7 @@ int bajaSalon(eSalon cadena[], int tam) {
 		} else {
 			posicion = buscarSalon(cadena, tam, idAux);
 			cadena[posicion].isEmpty = 1;
+			*idSalonEliminado =idAux;
 			rtn = 1;
 		}
 	}
@@ -181,9 +159,9 @@ int bajaSalon(eSalon cadena[], int tam) {
 	if (rtn == 1) {
 		printf("Se dio de baja al Salon con el id %d\n",
 				cadena[posicion].idSalon);
-		printf("Nombre: %s\n", cadena[posicion].nombre);
-		printf("Direccion: %s\n", cadena[posicion].direccion);
-		printf("Tipo: %d\n", cadena[posicion].tipoDeSalon);
+
+	}else{
+		printf("Error, NO se dio de baja al Salon");
 	}
 
 	return rtn;
@@ -191,7 +169,8 @@ int bajaSalon(eSalon cadena[], int tam) {
 
 void mostrarUnSalon(eSalon cadena) {
 
-	printf("%5d%10s%10s%7d\n", cadena.idSalon, cadena.nombre, cadena.direccion,
+	printf("ID SALON: %d - NOMBRE: %s - DIRECCION: %s - TIPO DE SALON: %d\n",
+			cadena.idSalon, cadena.nombre, cadena.direccion,
 			cadena.tipoDeSalon);
 
 }
@@ -200,17 +179,39 @@ int mostrarSalones(eSalon cadena[], int tam) {
 	int i;
 	int rtn = 0;
 
-	printf("\n\t> LISTADO DE SALONES\n");
-	printf("%5s%10s%10s%10s\n", "ID", "NOMBRE", "DIRECCION", "TIPO");
+	printf("\n\t**********LISTADO DE SALONES**********\n");
 
 	if (cadena != NULL && tam > 0) {
 		for (i = 0; i < tam; i++) {
-			if (cadena[i].isEmpty == 0) {
+			if (cadena[i].isEmpty == OCUPADO) {
 				mostrarUnSalon(cadena[i]);
 				rtn++;
 			}
 		}
+	}
+	return rtn;
+}
 
+void imprimirUnSalonParaEliminar(eSalon cadena) {
+
+	printf("ID SALON: %d - NOMBRE: %s - DIRECCION: %s\n",
+			cadena.idSalon, cadena.nombre, cadena.direccion);
+
+}
+
+int imprimirSalonesParaElimar(eSalon cadena[], int tam) {
+	int i;
+	int rtn = 0;
+
+	printf("\n\t**********LISTADO DE SALONES**********\n");
+
+	if (cadena != NULL && tam > 0) {
+		for (i = 0; i < tam; i++) {
+			if (cadena[i].isEmpty == 0) {
+				imprimirUnSalonParaEliminar(cadena[i]);
+				rtn++;
+			}
+		}
 	}
 	return rtn;
 }
@@ -256,6 +257,26 @@ int ordenarSalones(eSalon cadena[], int tam, int criterio) {
 			rtn = 0;
 			break;
 		}
+	}
+	return rtn;
+}
+
+
+int salon_altaForzada(eSalon cadena[], int posicion, char *nombre, char *direccion, int tipoDeSalon) {
+
+	int rtn = 0;
+	eSalon bufferAux;
+
+	if (cadena != NULL && posicion>=0 && nombre != NULL
+			&& direccion != NULL && tipoDeSalon > 0) {
+
+		bufferAux.idSalon = obtenerId();
+		strncpy(bufferAux.nombre, nombre, NOMBRE_LEN);
+		strncpy(bufferAux.direccion, direccion, DIRECCION_LEN);
+		bufferAux.tipoDeSalon = tipoDeSalon;
+		bufferAux.isEmpty = 0;
+		cadena[posicion] = bufferAux;
+		rtn = 1;
 	}
 	return rtn;
 }

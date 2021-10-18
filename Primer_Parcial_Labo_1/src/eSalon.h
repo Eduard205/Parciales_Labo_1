@@ -12,6 +12,10 @@
 #include <ctype.h>
 #include <string.h>
 #include "utn.h"
+#define LIBRE 1
+#define OCUPADO 0
+#define NOMBRE_LEN 20
+#define DIRECCION_LEN 20
 #define SHOPPING 1
 #define LOCAL 2
 
@@ -29,10 +33,14 @@ int altaSalon(eSalon cadena[], int posicion);
 int buscarSalon(eSalon cadena[], int tam, int id);
 int modificarSalon(eSalon cadena[], int tam);
 int modificarUnSalon(eSalon *cadena);
-int bajaSalon(eSalon cadena[], int tam);
+int bajaSalon(eSalon cadena[], int tam, int* idSalonEliminado);
 void mostrarUnSalon(eSalon cadena);
 int mostrarSalones(eSalon cadena[], int tam);
 int ordenarSalones(eSalon cadena[], int tam, int criterio);
+void imprimirUnSalonParaEliminar(eSalon cadena);
+int imprimirSalonesParaElimar(eSalon cadena[], int tam);
+
+int salon_altaForzada(eSalon cadena[], int posicion, char *nombre, char *direccion, int tipoDeSalon);
 
 
 
