@@ -31,8 +31,8 @@ int main(void) {
 	int posicion;
 	int idSalonEliminado;
 	int idSalonValidado;
-	int flagAltaSalon = 0;
-	int flagArcadeAlta=0;
+	int flagAltaSalon = 1;
+	int flagArcadeAlta=1;
 
 
 	inicializarSalon(listaSalones, CANT_SALONES);

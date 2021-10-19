@@ -4,7 +4,7 @@
  */
 
 #include "eArcade.h"
-
+//static const char TXT_TIPOS[4][7]={"MONO","ESTEREO"};
 
 static int obtenerId(void);
 
@@ -75,7 +75,17 @@ int altaArcade(eArcade cadena[], int posicion, int *idSalonValidado) {
 		rtn = 1;
 
 		mostrarUnArcade(cadena[posicion]);
-
+		/*
+		 printf("Id Salon: %d\n", cadena[posicion].idSalon);
+		 printf("Id Arcade: %d\n", cadena[posicion].idArcade);
+		 printf("Nacionalidad: %s\n", cadena[posicion].nacionalidad);
+		 printf("Nombre del Juego: %s\n", cadena[posicion].nombreDelJuego);
+		 printf("Cantidad de Jugadores: %d\n",
+		 cadena[posicion].cantidadDeJugadores);
+		 printf("Cantidad Maxima de Fichas: %d\n",
+		 cadena[posicion].cantidadMaxDeFichas);
+		 printf("Tipo de Sonido: %d\n", cadena[posicion].tipoDeSonido);
+		 */
 	}
 
 	return rtn;
@@ -268,6 +278,8 @@ int arcades_ListarJuegos(eArcade cadena[], int tam) {
 	int rtn = 0;
 	eArcade listaAux[tam];
 
+	//strncpy(listaAux[0].nombreDelJuego,&cadena->nombreDelJuego[0], NOMBRE_DE_JUEGO_LEN);
+	//listaAux.nombreDelJuego = cadena->nombreDelJuego;
 
 	printf("\n\t*************** LISTADO DE JUEGOS ***************\n");
 

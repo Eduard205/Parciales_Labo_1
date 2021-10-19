@@ -144,7 +144,7 @@ int main(void) {
 					arcades_ListarJuegos(listaArcades, CANT_ARCADES);
 					}
 					else{
-							printf("No han dado de alta ARCADES, ingrese a la opción 4");
+							printf("No han dado de ARCADES, ingrese a la opción 4");
 							}
 
 				break;
@@ -197,9 +197,6 @@ int main(void) {
 				 			break;
 
 				 }
-				}
-				else{
-					printf("No han dado de alta SALONES ni ARCADES, ingrese a la opción 1 y 4");
 				}
 				 break;
 

@@ -29,9 +29,9 @@ int main(void) {
 	int subOpcionMenu;
 	char resp= 's';
 	int posicion;
+	int flagOpcion1 = 0;
 	int idSalonEliminado;
 	int idSalonValidado;
-	int flagAltaSalon = 0;
 	int flagArcadeAlta=0;
 
 
@@ -60,7 +60,7 @@ int main(void) {
 				 if(buscarLibreSalon(listaSalones, &posicion, CANT_SALONES) != -1)
 					{
 						if(altaSalon(listaSalones, posicion)==1){
-							flagAltaSalon = 1;
+							flagOpcion1 = 1;
 						}
 						else{
 							printf("Error en el alta");
@@ -70,7 +70,7 @@ int main(void) {
 
 
 			case 2:
-				if(flagAltaSalon ==1){
+				if(flagOpcion1 ==1){
 					imprimirSalonesParaElimar(listaSalones,CANT_SALONES);
 					if(bajaSalon(listaSalones, CANT_SALONES,&idSalonEliminado)==1){
 						bajaArcadesPorIdSalon(listaArcades, CANT_ARCADES, idSalonEliminado);
@@ -83,7 +83,7 @@ int main(void) {
 				break;
 
 			case 3:
-				if(flagAltaSalon ==1){
+				if(flagOpcion1 ==1){
 				if(mostrarSalones(listaSalones, CANT_SALONES)==0){
 					printf("Error, NO se encontraron Salones para imprimir");
 				}
@@ -93,7 +93,7 @@ int main(void) {
 				}
 				break;
 			case 4:
-				if(flagAltaSalon ==1){
+				if(flagOpcion1 ==1){
 				if(buscarLibreArcade(listaArcades, &posicion, CANT_ARCADES) != -1 && salon_Obtener_idSalon(listaSalones, CANT_SALONES, &idSalonValidado)==1){
 
 					if(altaArcade(listaArcades, posicion, &idSalonValidado)==1){
@@ -105,7 +105,7 @@ int main(void) {
 						}
 				}
 				else{
-					printf("No han dado de alta SALONES, ingrese a la opción 1");
+					printf("No ha dado de alta Salones, ingrese a la opción 1");
 					}
 
 				break;
@@ -115,43 +115,23 @@ int main(void) {
 					mostrarArcades(listaArcades, CANT_ARCADES);
 					modificarArcade(listaArcades, CANT_ARCADES);
 					}
-				else{
-						printf("No han dado de ARCADES, ingrese a la opción 4");
-						}
 				break;
 
 			case 6:
-					if(flagArcadeAlta == 1){
-						mostrarArcades(listaArcades, CANT_ARCADES);
-						bajaArcade(listaArcades, CANT_ARCADES);
-						}
-				else{
-						printf("No han dado de ARCADES, ingrese a la opción 4");
-							}
+					mostrarArcades(listaArcades, CANT_ARCADES);
+					bajaArcade(listaArcades, CANT_ARCADES);
+
 				break;
 
 			case 7:
-				if(flagArcadeAlta == 1){
 					mostrarArcades(listaArcades, CANT_ARCADES);
-					}
-					else{
-							printf("No han dado de ARCADES, ingrese a la opción 4");
-							}
 				break;
 
 			case 8:
-				if(flagArcadeAlta == 1){
 					arcades_ListarJuegos(listaArcades, CANT_ARCADES);
-					}
-					else{
-							printf("No han dado de alta ARCADES, ingrese a la opción 4");
-							}
-
 				break;
 
 			case 9:
-				if(flagAltaSalon ==1 && flagArcadeAlta == 1){
-
 				 mostrarSubMenu(&subOpcionMenu);
 
 				 switch (subOpcionMenu)
@@ -174,33 +154,12 @@ int main(void) {
 				 					listaArcades, CANT_ARCADES);
 
 							break;
-
-				 		case 4:
-
-				 			break;
-
-				 		case 5:
-
-				 			break;
-
-				 		case 6:
-
-				 			break;
-
-				 		case 7:
-
-				 			break;
-
 				 		case 8:
 				 			printf("A salido del programa");
 				 			resp = !'s';
 				 			break;
 
 				 }
-				}
-				else{
-					printf("No han dado de alta SALONES ni ARCADES, ingrese a la opción 1 y 4");
-				}
 				 break;
 
 			case 10:
