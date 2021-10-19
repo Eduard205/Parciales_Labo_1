@@ -13,9 +13,10 @@
 #include <ctype.h>
 #include <string.h>
 
-#include "eSalon.h"
 #include "utn.h"
+#include "eSalon.h"
 #include "eArcade.h"
+#include "informes.h"
 #define CANT_SALONES 100
 #define CANT_ARCADES 1000
 
@@ -25,6 +26,7 @@ int main(void) {
 	eSalon listaSalones[CANT_SALONES];
 	eArcade listaArcades[CANT_ARCADES];
 	int opcion;
+	int subOpcionMenu;
 	char resp= 's';
 	int posicion;
 	//int criterioDeOrdenamiento;
@@ -43,11 +45,11 @@ int main(void) {
 	//mostrarSalones(listaSalones, CANT_SALONES);
 
 	arcade_altaForzada(listaArcades, 2, 1, "EEUU", "CALL DUTY", 4, 100, ESTEREO);
-	arcade_altaForzada(listaArcades, 0, 3, "JAPON", "POKEMON", 2, 200, MONO);
-	arcade_altaForzada(listaArcades, 1, 2, "CHINA", "PACMAN", 1, 150, ESTEREO);
-	arcade_altaForzada(listaArcades, 3, 2, "JAPON", "POKEMON", 2, 200, MONO);
-
-	//mostrarArcades(listaArcades, CANT_ARCADES);
+	arcade_altaForzada(listaArcades, 0, 1, "JAPON", "POKEMON", 2, 200, MONO);
+	arcade_altaForzada(listaArcades, 1, 1, "CHINA", "PACMAN", 1, 150, ESTEREO);
+	arcade_altaForzada(listaArcades, 3, 1, "JAPON", "POKEMON", 2, 200, MONO);
+	arcade_altaForzada(listaArcades, 4, 1, "CHINA", "PACMAN", 1, 150, ESTEREO);
+	mostrarArcades(listaArcades, CANT_ARCADES);
 
 
 	do {
@@ -162,6 +164,25 @@ int main(void) {
 			case 8:
 					arcades_ListarJuegos(listaArcades, CANT_ARCADES);
 				break;
+
+			case 9:
+				 mostrarSubMenu(&subOpcionMenu);
+
+				 switch (subOpcionMenu)
+				 {
+
+				 		case 1:
+				 			mostrarSalonesConMasArcades(listaSalones, CANT_SALONES, listaArcades, CANT_ARCADES);
+
+				 			break;
+
+				 		case 8:
+				 			printf("A salido del programa");
+				 			resp = !'s';
+				 			break;
+
+				 }
+				 break;
 
 			case 10:
 				printf("A salido del programa");

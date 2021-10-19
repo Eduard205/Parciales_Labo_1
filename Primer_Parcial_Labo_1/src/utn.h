@@ -17,5 +17,6 @@ int pedirEntero(int* pInt, int min, int max, int reintento, char* pTexto, char* 
 float pedirFlotante(float* pFloat /*int min, int max*/, int reintento, char* pTexto, char* pTextoError);
 int utn_pedirCuit(char auxiliar[], char *mensaje, char *mensajeError, int reintentos);
 void mostrarMenu(int *opcion);
+void mostrarSubMenu(int *opcion);
 
 #endif /* UTN_H_ */

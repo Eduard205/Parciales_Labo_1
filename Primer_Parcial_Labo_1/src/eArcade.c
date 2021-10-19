@@ -276,14 +276,23 @@ int mostrarArcades(eArcade cadena[], int tam) {
 int arcades_ListarJuegos(eArcade cadena[], int tam) {
 	int i;
 	int rtn = 0;
+	eArcade listaAux[tam];
 
+	//strncpy(listaAux[0].nombreDelJuego,&cadena->nombreDelJuego[0], NOMBRE_DE_JUEGO_LEN);
+	//listaAux.nombreDelJuego = cadena->nombreDelJuego;
 
 	printf("\n\t*************** LISTADO DE JUEGOS ***************\n");
 
 	if (cadena != NULL && tam > 0) {
 		for (i = 0; i < tam; i++) {
-			if (cadena[i].isEmpty == 0 && strncmp(cadena[i].nombreDelJuego, cadena[i].nombreDelJuego,
-					NOMBRE_DE_JUEGO_LEN)!=0) {
+
+			strncpy(listaAux[i].nombreDelJuego, &cadena->nombreDelJuego[i],
+			NOMBRE_DE_JUEGO_LEN);
+
+			if (cadena[i].isEmpty == 0
+					&& strncmp(cadena[i].nombreDelJuego,
+							listaAux[i].nombreDelJuego,
+							NOMBRE_DE_JUEGO_LEN) != 0) {
 
 				mostrarNombreDeUnJuego(cadena[i]);
 				rtn++;

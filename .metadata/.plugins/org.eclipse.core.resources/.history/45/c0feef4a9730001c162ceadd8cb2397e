@@ -1,0 +1,13 @@
+/*
+ * informes.h
+ *
+ *  Biblioteca de funciones para informes con las entidades eSalon y eArcade.
+ *      Author: eduar
+ */
+
+#ifndef INFORMES_H_
+#define INFORMES_H_
+
+
+
+#endif /* INFORMES_H_ */

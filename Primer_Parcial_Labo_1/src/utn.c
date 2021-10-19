@@ -359,37 +359,66 @@ void mostrarMenu(int *opcion) {
 
 
 	printf(
-			" \n ____________________________________MENU__________________________________________________________________");
+			" \n ____________MENU_____________");
 	printf(
-			"\n |                                                                                                           |"
-			"\n | 1. Alta de Salon.                                                                                         |"
-			"\n | 2. Eliminar Salon.                                                                                        |"
-			"\n | 3. Imprimir Salones.                                                                                      |"
-			"\n | 4. Incorporar Arcade.                                                                                     |"
-			"\n | 5. Modificar Arcade.                                                                                      |"
-			"\n | 6. Eliminar Arcade.                                                                                       |"
-			"\n | 7. Imprimir Arcades.                                                                                      |"
-			"\n | 8. Imprimir Juegos.                                                                                       |"
-			"\n | 9. Informes:                                                                                              |"
-			"\n |	a) Listar los salones con mas de 4 arcades. Indicando ID de salon, nombre, direccion y tipo de salon.|"
-			"\n |	b) Listar los arcades para mas de 2 jugadores, indicando ID de arcade, cantidad de jugadores,        |"
-			"\n |	nombre del juego y nombre del salon al que pertenece.                                                |"
-			"\n |	c) Listar toda la informacion de un salon en especifico ingresando su ID. Imprimir nombre,           |"
-			"\n |	tipo y direccion y cantidad de arcades que posee.                                                    |"
-			"\n |	d) Listar todos los arcades de un salon determinado ingresando su ID. Informar nombre y tipo         |"
-			"\n |	de salon, listar todos los arcades con sus datos junto con el nombre del juego que lo compone.       |"
-			"\n |	e) Imprimir el salón con mas cantidad de arcades, indicando todos los datos del salon y la           |"
-			"\n |	cantidad de arcades que posee.                                                                       |"
-			"\n |	f) Ingresar el ID de un salon, y el valor en pesos de una ficha, e imprimir el monto maximo          |"
-			"\n |	en pesos que puede recaudar el salon.                                                                |"
-			"\n |	g) Ingresar el nombre de un juego e imprimir cuantos arcades lo contienen.                           |"
-			"\n | 10. SALIR.                                                                                                |"
-			"\n |___________________________________________________________________________________________________________|\n"
+			"\n |                            |"
+			"\n | 1. Alta de Salon.          |"
+			"\n | 2. Eliminar Salon.         |"
+			"\n | 3. Imprimir Salones.       |"
+			"\n | 4. Incorporar Arcade.      |"
+			"\n | 5. Modificar Arcade.       |"
+			"\n | 6. Eliminar Arcade.        |"
+			"\n | 7. Imprimir Arcades.       |"
+			"\n | 8. Imprimir Juegos.        |"
+			"\n | 9. Informes:               |"
+			"\n | 10. SALIR.                 |"
+			"\n |____________________________|\n"
 
 			);
 
 	if(pedirEntero(&auxOpcion, 1, 10, 3, "\n Ingrese una opcion: ",
 			"\n Error, ingrese una opcion del 1 al 10: \n\n")==1){
+		*opcion = auxOpcion;
+	}
+
+	return;
+}
+
+
+void mostrarSubMenu(int *opcion) {
+	int auxOpcion;
+
+
+	printf(
+			" \n ____________________________________***MENU INFORMES*** ________________________________________________");
+	printf(
+			"\n |                                                                                                        |"
+			"\n | 	1) Listar los salones con mas de 4 arcades. Indicando ID de salon, nombre, direccion y tipo de salon.|"
+			"\n |                                                                                                    	 |"
+			"\n |	2) Listar los arcades para mas de 2 jugadores, indicando ID de arcade, cantidad de jugadores,        |"
+			"\n |	nombre del juego y nombre del salon al que pertenece.                                                |"
+			"\n |                                                                                                        |"
+			"\n |	3) Listar toda la informacion de un salon en especifico ingresando su ID. Imprimir nombre,           |"
+			"\n |	tipo y direccion y cantidad de arcades que posee.                                                    |"
+			"\n |                                                                                                        |"
+			"\n |	4) Listar todos los arcades de un salon determinado ingresando su ID. Informar nombre y tipo         |"
+			"\n |	de salon, listar todos los arcades con sus datos junto con el nombre del juego que lo compone.       |"
+			"\n |                                                                                                        |"
+			"\n |	5) Imprimir el salón con mas cantidad de arcades, indicando todos los datos del salon y la           |"
+			"\n |	cantidad de arcades que posee.                                                                       |"
+			"\n |                                                                                                        |"
+			"\n |	6) Ingresar el ID de un salon, y el valor en pesos de una ficha, e imprimir el monto maximo          |"
+			"\n |	en pesos que puede recaudar el salon.                                                                |"
+			"\n |                                                                                                        |"
+			"\n |	7) Ingresar el nombre de un juego e imprimir cuantos arcades lo contienen.                           |"
+			"\n |                                                                                                        |"
+			"\n |   8) SALIR                                                                                             |"
+			"\n |________________________________________________________________________________________________________|\n"
+
+			);
+
+	if(pedirEntero(&auxOpcion, 1, 8, 3, "\n Ingrese una opcion: ",
+			"\n Error, ingrese una opcion del 1 al 8: \n\n")==1){
 		*opcion = auxOpcion;
 	}
 
