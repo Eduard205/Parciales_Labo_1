@@ -1,1 +1,5 @@
+15:37:25 **** Incremental Build of configuration Debug for project Primer_Parcial_Labo_1 ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\informes.o" "..\\src\\informes.c" 
+gcc -o Primer_Parcial_Labo_1.exe "src\\Primer_Parcial_Labo_1.o" "src\\eArcade.o" "src\\eSalon.o" "src\\informes.o" "src\\utn.o" 
 Info: Nothing to build for Primer_Parcial_Labo_1

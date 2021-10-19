@@ -13,5 +13,10 @@
 #include "eArcade.h"
 
  int mostrarSalonesConMasArcades(eSalon cadenaSalon[], int tamSalon, eArcade cadenaArcade[], int tamArcade);
+ int mostrarArcadesPorCantidadDeJugadores(eArcade cadenaArcade[], int tamArcade);
+ void mostrarUnArcade_ConDatosParaInformes(eArcade cadena);
+ void mostrarUnSalonConSusArcades(eSalon cadenaSalon, int cantidadDeArcades);
+ int mostrarPorIdSalonesConArcades(eSalon cadenaSalon[], int tamSalon, eArcade cadenaArcade[], int tamArcade);
+
 
 #endif /* INFORMES_H_ */

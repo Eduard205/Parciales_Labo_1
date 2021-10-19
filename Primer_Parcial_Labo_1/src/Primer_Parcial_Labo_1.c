@@ -48,7 +48,7 @@ int main(void) {
 	arcade_altaForzada(listaArcades, 0, 1, "JAPON", "POKEMON", 2, 200, MONO);
 	arcade_altaForzada(listaArcades, 1, 1, "CHINA", "PACMAN", 1, 150, ESTEREO);
 	arcade_altaForzada(listaArcades, 3, 1, "JAPON", "POKEMON", 2, 200, MONO);
-	arcade_altaForzada(listaArcades, 4, 1, "CHINA", "PACMAN", 1, 150, ESTEREO);
+	arcade_altaForzada(listaArcades, 4, 1, "CHINA", "PACMAN", 4, 150, ESTEREO);
 	mostrarArcades(listaArcades, CANT_ARCADES);
 
 
@@ -176,6 +176,18 @@ int main(void) {
 
 				 			break;
 
+				 		case 2:
+
+				 			mostrarArcadesPorCantidadDeJugadores(listaArcades,  CANT_ARCADES);
+
+				 			break;
+
+				 		case 3:
+
+				 			mostrarPorIdSalonesConArcades(listaSalones, CANT_SALONES,
+				 					listaArcades, CANT_ARCADES);
+
+							break;
 				 		case 8:
 				 			printf("A salido del programa");
 				 			resp = !'s';
