@@ -31,7 +31,7 @@ int main(void) {
 	int posicion;
 	int idSalonEliminado;
 	int idSalonValidado;
-	int flagAltaSalon =0;
+	int flagAltaSalon = 0;
 	int flagArcadeAlta=0;
 
 

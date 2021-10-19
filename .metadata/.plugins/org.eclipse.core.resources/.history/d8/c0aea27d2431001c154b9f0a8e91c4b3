@@ -74,7 +74,7 @@ int mostrarArcadesPorCantidadDeJugadores(eArcade cadenaArcade[], int tamArcade) 
 				if (cadenaArcade[i].isEmpty == OCUPADO && cadenaArcade[i].cantidadDeJugadores>2) {
 
 					mostrarUnArcade_ConDatosParaInformes(cadenaArcade[i]);
-					//mostrarUnArcade(cadenaArcade[i]);
+					mostrarUnArcade(cadenaArcade[i]);
 						rtn++;
 					}
 			}
