@@ -20,7 +20,7 @@ int mostrarSalonesConMasArcades(eSalon cadenaSalon[], int tamSalon,
 			&& tamArcade > 0) {
 
 		for (i = 0; i < tamSalon; i++) {
-
+			contadorArcades=0;
 			if (cadenaSalon[i].isEmpty == OCUPADO) {
 
 				for (j = 0; j < tamArcade; j++) {
@@ -33,6 +33,8 @@ int mostrarSalonesConMasArcades(eSalon cadenaSalon[], int tamSalon,
 						if (contadorArcades > 4) {
 							mostrarUnSalon(cadenaSalon[i]);
 							rtn++;
+							break;
+
 						}
 					}
 
@@ -65,6 +67,7 @@ int mostrarArcadesPorCantidadDeJugadores(eArcade cadenaArcade[], int tamArcade) 
 		int rtn = 0;
 
 
+
 		printf("\n\t**********LISTADO DE ARCADES POR CANTIDAD DE JUGADORES**********\n");
 
 		if (cadenaArcade != NULL && tamArcade > 0) {
@@ -75,6 +78,7 @@ int mostrarArcadesPorCantidadDeJugadores(eArcade cadenaArcade[], int tamArcade) 
 
 					mostrarUnArcade_ConDatosParaInformes(cadenaArcade[i]);
 					//mostrarUnArcade(cadenaArcade[i]);
+
 						rtn++;
 					}
 			}
@@ -122,7 +126,7 @@ int mostrarPorIdSalonesConArcades(eSalon cadenaSalon[], int tamSalon,
 	return rtn;
 }
 
-int mostrarArcadesDeUnSalones(eSalon cadenaSalon[], int tamSalon,
+int mostrarArcadesDeUnSalon(eSalon cadenaSalon[], int tamSalon,
 		eArcade cadenaArcade[], int tamArcade) {
 
 	int i;
@@ -164,5 +168,109 @@ int mostrarArcadesDeUnSalones(eSalon cadenaSalon[], int tamSalon,
 					mostrarUnSalonConSusArcades(cadenaSalon[posicion], contadorArcades);
 				}
 	return rtn;
+}
+
+
+int mostrarSalonesConMasArcadesAux(eSalon cadenaSalon[], int tamSalon,
+		eArcade cadenaArcade[], int tamArcade) {
+	int i;
+	int rtn = 0;
+	int j;
+	int contadorArcades;
+
+	printf("\n\t**********LISTADO DE SALONES**********\n");
+
+	if (cadenaSalon != NULL && tamSalon > 0 && cadenaArcade != NULL
+			&& tamArcade > 0) {
+
+		for (i = 0; i < tamSalon; i++) {
+			contadorArcades=0;
+			if (cadenaSalon[i].isEmpty == OCUPADO) {
+
+				for (j = 0; j < tamArcade; j++) {
+
+					if (cadenaArcade[j].isEmpty == OCUPADO
+							&& cadenaArcade[j].idSalon
+									== cadenaSalon[i].idSalon && cadenaArcade[i].cantidadDeJugadores>2) {
+						contadorArcades++;
+
+						if (contadorArcades >= 8 ) {
+							mostrarUnSalon(cadenaSalon[i]);
+							break;
+							rtn++;
+						}
+					}
+
+				}
+
+			}
+		}
+	}
+	return rtn;
+}
+
+int imprimnirPromedioDeAracdesPorSalon(eSalon cadenaSalon[], int tamSalon,
+		eArcade cadenaArcade[], int tamArcade) {
+	int i;
+	int rtn = 0;
+	int j;
+	int contadorArcades=0;
+	int contadorSalones=0;
+	float promedio;
+
+	printf("\n\t**********PROMEDIO DE ARCADES POR SALON**********\n");
+
+	if (cadenaSalon != NULL && tamSalon > 0 && cadenaArcade != NULL
+			&& tamArcade > 0) {
+
+		for (i = 0; i < tamSalon; i++) {
+
+			if (cadenaSalon[i].isEmpty == OCUPADO) {
+				contadorSalones++;
+				}
+			}
+
+				for (j = 0; j < tamArcade; j++) {
+
+					if (cadenaArcade[j].isEmpty == OCUPADO){
+
+							contadorArcades++;
+						}
+					}
+
+		if (contadorSalones >0 ) {
+			promedio = contadorArcades / (float)(contadorSalones);
+			printf("Promedio de ARCADES por SALON: %.2f", promedio);
+			rtn++;
+			}
+	}
+	return rtn;
+}
+
+int imprimirCantidadDeArcadesPorJuego(eArcade cadenaArcade[], int tamArcade) {
+
+		int i;
+		int rtn = 0;
+		char charAux[NOMBRE_DE_JUEGO_LEN];
+		int contadorArcades=0;
+
+		pedirCadena(charAux,NOMBRE_DE_JUEGO_LEN,2,"Ingrese Nombre del Juego: ","Error, reingrese Nombre del Juego");
+
+		printf("\n\t**********CANTIDAD DE ARCADES POR JUEGO**********\n");
+
+		if (cadenaArcade != NULL && tamArcade > 0) {
+
+			for (i = 0; i < tamArcade; i++) {
+
+				if (cadenaArcade[i].isEmpty == OCUPADO && strcmp(cadenaArcade[i].nombreDelJuego, charAux)==0) {
+
+					contadorArcades++;
+
+						rtn++;
+					}
+				}
+				printf("Cantidad de Arcades que contienen el juego %s es: %d", charAux, contadorArcades);
+			}
+		return rtn;
 }
 

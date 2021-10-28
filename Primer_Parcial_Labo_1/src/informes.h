@@ -17,7 +17,10 @@
  void mostrarUnArcade_ConDatosParaInformes(eArcade cadena);
  void mostrarUnSalonConSusArcades(eSalon cadenaSalon, int cantidadDeArcades);
  int mostrarPorIdSalonesConArcades(eSalon cadenaSalon[], int tamSalon, eArcade cadenaArcade[], int tamArcade);
- int mostrarArcadesDeUnSalones(eSalon cadenaSalon[], int tamSalon, eArcade cadenaArcade[], int tamArcade);
+ int mostrarArcadesDeUnSalon(eSalon cadenaSalon[], int tamSalon, eArcade cadenaArcade[], int tamArcade);
+ int mostrarSalonesConMasArcadesAux(eSalon cadenaSalon[], int tamSalon, eArcade cadenaArcade[], int tamArcade);
+ int imprimnirPromedioDeAracdesPorSalon(eSalon cadenaSalon[], int tamSalon, eArcade cadenaArcade[], int tamArcade);
+ int imprimirCantidadDeArcadesPorJuego(eArcade cadenaArcade[], int tamArcade);
 
 
 #endif /* INFORMES_H_ */

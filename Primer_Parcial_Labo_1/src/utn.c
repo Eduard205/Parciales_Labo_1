@@ -412,13 +412,18 @@ void mostrarSubMenu(int *opcion) {
 			"\n |                                                                                                        |"
 			"\n |	7) Ingresar el nombre de un juego e imprimir cuantos arcades lo contienen.                           |"
 			"\n |                                                                                                        |"
-			"\n |   8) SALIR                                                                                             |"
+			"\n |	8) Un salón se encuentra equipado por completo si posee al menos 8 arcades de mas de 2 jugadores.    |"
+			"\n |		Listar los salones que cumplan con este mínimo de requisito.                                     |"
+			"\n |                                                                                                        |"
+			"\n |	9) Imprimir el promedio de arcades por salón.                                                        |"
+			"\n |                                                                                                        |"
+			"\n |   10) SALIR                                                                                            |"
 			"\n |________________________________________________________________________________________________________|\n"
 
 			);
 
-	if(pedirEntero(&auxOpcion, 1, 8, 3, "\n Ingrese una opcion: ",
-			"\n Error, ingrese una opcion del 1 al 8: \n\n")==1){
+	if(pedirEntero(&auxOpcion, 1, 10, 3, "\n Ingrese una opcion: ",
+			"\n Error, ingrese una opcion del 1 al 10: \n\n")==1){
 		*opcion = auxOpcion;
 	}
 

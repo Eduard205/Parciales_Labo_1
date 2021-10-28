@@ -277,6 +277,7 @@ int arcades_ListarJuegos(eArcade cadena[], int tam) {
 			strncpy(listaAux[i].nombreDelJuego, &cadena->nombreDelJuego[i],
 			NOMBRE_DE_JUEGO_LEN);
 
+
 			if (cadena[i].isEmpty == 0
 					&& strncmp(cadena[i].nombreDelJuego,
 							listaAux[i].nombreDelJuego,

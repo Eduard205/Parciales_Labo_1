@@ -27,192 +27,214 @@ int main(void) {
 	eArcade listaArcades[CANT_ARCADES];
 	int opcion;
 	int subOpcionMenu;
-	char resp= 's';
+	char resp = 's';
 	int posicion;
 	int idSalonEliminado;
 	int idSalonValidado;
-	int flagAltaSalon =0;
-	int flagArcadeAlta=0;
-
+	int flagAltaSalon = 1;
+	int flagArcadeAlta = 1;
 
 	inicializarSalon(listaSalones, CANT_SALONES);
 	inicializarArcade(listaArcades, CANT_ARCADES);
 
-	salon_altaForzada(listaSalones, 2, "SALON A", "CABA", SHOPPING);
+	salon_altaForzada(listaSalones, 0, "SALON A", "CABA", SHOPPING);
 	salon_altaForzada(listaSalones, 1, "SALON B", "NORDELTA", LOCAL);
-	salon_altaForzada(listaSalones, 0, "SALON C", "OLIVOS", SHOPPING);
+	salon_altaForzada(listaSalones, 2, "SALON C", "MARTINEZ", LOCAL);
+	salon_altaForzada(listaSalones, 3, "SALON D", "ROSARIO", SHOPPING);
 	//mostrarSalones(listaSalones, CANT_SALONES);
 
-	arcade_altaForzada(listaArcades, 2, 1, "EEUU", "CALL DUTY", 4, 100, ESTEREO);
-	arcade_altaForzada(listaArcades, 0, 1, "JAPON", "POKEMON", 2, 200, MONO);
-	arcade_altaForzada(listaArcades, 1, 1, "CHINA", "PACMAN", 1, 150, ESTEREO);
-	arcade_altaForzada(listaArcades, 3, 1, "JAPON", "POKEMON", 2, 200, MONO);
-	arcade_altaForzada(listaArcades, 4, 1, "CHINA", "PACMAN", 4, 150, ESTEREO);
+	arcade_altaForzada(listaArcades, 0, 1, "EEUU", "CALL DUTY", 3, 100,
+			ESTEREO);
+	arcade_altaForzada(listaArcades, 1, 1, "JAPON", "POKEMON", 3, 200, MONO);
+	arcade_altaForzada(listaArcades, 2, 1, "CHINA", "PACMAN", 3, 150, ESTEREO);
+	arcade_altaForzada(listaArcades, 3, 1, "JAPON", "KIRBY", 3, 200, MONO);
+	arcade_altaForzada(listaArcades, 4, 1, "CHINA", "MATROI", 3, 150, ESTEREO);
+	arcade_altaForzada(listaArcades, 5, 1, "PERU", "MARIO", 3, 100, ESTEREO);
+	arcade_altaForzada(listaArcades, 6, 1, "JAPON", "ZELDA", 3, 200, MONO);
+	arcade_altaForzada(listaArcades, 7, 1, "CHINA", "TETRIS", 3, 150, ESTEREO);
+	arcade_altaForzada(listaArcades, 8, 2, "JAPON", "DIGIMON", 3, 200, MONO);
+	arcade_altaForzada(listaArcades, 9, 2, "CHINA", "CONTRA", 3, 150, ESTEREO);
+	arcade_altaForzada(listaArcades, 10, 2, "CHINA", "CONTRA", 3, 150, ESTEREO);
+	arcade_altaForzada(listaArcades, 11, 2, "CHINA", "POKEMON", 3, 150,
+			ESTEREO);
+	arcade_altaForzada(listaArcades, 12, 2, "CHINA", "CONTRA", 3, 150, ESTEREO);
+	arcade_altaForzada(listaArcades, 13, 2, "CHINA", "CONTRA", 3, 150, ESTEREO);
+	arcade_altaForzada(listaArcades, 14, 2, "CHINA", "CONTRA", 3, 150, ESTEREO);
+	arcade_altaForzada(listaArcades, 15, 3, "CHINA", "CONTRA", 3, 150, ESTEREO);
 	//mostrarArcades(listaArcades, CANT_ARCADES);
-
 
 	do {
 		mostrarMenu(&opcion);
 
-			switch (opcion) {
+		switch (opcion) {
 
-			case 1:
-				 if(buscarLibreSalon(listaSalones, &posicion, CANT_SALONES) != -1)
-					{
-						if(altaSalon(listaSalones, posicion)==1){
-							flagAltaSalon = 1;
-						}
-						else{
-							printf("Error en el alta");
-						}
-					}
-				break;
+		case 1:
+			if (buscarLibreSalon(listaSalones, &posicion, CANT_SALONES) != -1) {
+				if (altaSalon(listaSalones, posicion) == 1) {
+					flagAltaSalon = 1;
+				} else {
+					printf("Error en el alta");
+				}
+			}
+			break;
 
+		case 2:
+			if (flagAltaSalon == 1) {
+				imprimirSalonesParaElimar(listaSalones, CANT_SALONES);
+				if (bajaSalon(listaSalones, CANT_SALONES, &idSalonEliminado)
+						== 1) {
+					bajaArcadesPorIdSalon(listaArcades, CANT_ARCADES,
+							idSalonEliminado);
+				}
+			} else {
+				printf("No ha dado de alta Salones, ingrese a la opción 1");
+			}
 
-			case 2:
-				if(flagAltaSalon ==1){
-					imprimirSalonesParaElimar(listaSalones,CANT_SALONES);
-					if(bajaSalon(listaSalones, CANT_SALONES,&idSalonEliminado)==1){
-						bajaArcadesPorIdSalon(listaArcades, CANT_ARCADES, idSalonEliminado);
-						}
-					}
-					else{
-						printf("No ha dado de alta Salones, ingrese a la opción 1");
-					}
+			break;
 
-				break;
-
-			case 3:
-				if(flagAltaSalon ==1){
-				if(mostrarSalones(listaSalones, CANT_SALONES)==0){
+		case 3:
+			if (flagAltaSalon == 1) {
+				if (mostrarSalones(listaSalones, CANT_SALONES) == 0) {
 					printf("Error, NO se encontraron Salones para imprimir");
 				}
-				}
-				else{
-					printf("No ha dado de alta Salones, ingrese a la opción 1");
-				}
-				break;
-			case 4:
-				if(flagAltaSalon ==1){
-				if(buscarLibreArcade(listaArcades, &posicion, CANT_ARCADES) != -1 && salon_Obtener_idSalon(listaSalones, CANT_SALONES, &idSalonValidado)==1){
+			} else {
+				printf("No ha dado de alta Salones, ingrese a la opción 1");
+			}
+			break;
+		case 4:
+			if (flagAltaSalon == 1) {
+				if (buscarLibreArcade(listaArcades, &posicion, CANT_ARCADES)
+						!= -1
+						&& salon_Obtener_idSalon(listaSalones, CANT_SALONES,
+								&idSalonValidado) == 1) {
 
-					if(altaArcade(listaArcades, posicion, &idSalonValidado)==1){
+					if (altaArcade(listaArcades, posicion, &idSalonValidado)
+							== 1) {
 						flagArcadeAlta = 1;
-						}
-						else{
-								printf("Error en el alta");
-							}
-						}
+					} else {
+						printf("Error en el alta");
+					}
 				}
-				else{
-					printf("No han dado de alta SALONES, ingrese a la opción 1");
-					}
+			} else {
+				printf("No han dado de alta SALONES, ingrese a la opción 1");
+			}
 
-				break;
+			break;
 
-			case 5:
-				if(flagArcadeAlta == 1){
-					mostrarArcades(listaArcades, CANT_ARCADES);
-					modificarArcade(listaArcades, CANT_ARCADES);
-					}
-				else{
-						printf("No han dado de ARCADES, ingrese a la opción 4");
-						}
-				break;
+		case 5:
+			if (flagArcadeAlta == 1) {
+				mostrarArcades(listaArcades, CANT_ARCADES);
+				modificarArcade(listaArcades, CANT_ARCADES);
+			} else {
+				printf("No han dado de ARCADES, ingrese a la opción 4");
+			}
+			break;
 
-			case 6:
-					if(flagArcadeAlta == 1){
-						mostrarArcades(listaArcades, CANT_ARCADES);
-						bajaArcade(listaArcades, CANT_ARCADES);
-						}
-				else{
-						printf("No han dado de ARCADES, ingrese a la opción 4");
-							}
-				break;
+		case 6:
+			if (flagArcadeAlta == 1) {
+				mostrarArcades(listaArcades, CANT_ARCADES);
+				bajaArcade(listaArcades, CANT_ARCADES);
+			} else {
+				printf("No han dado de ARCADES, ingrese a la opción 4");
+			}
+			break;
 
-			case 7:
-				if(flagArcadeAlta == 1){
-					mostrarArcades(listaArcades, CANT_ARCADES);
-					}
-					else{
-							printf("No han dado de ARCADES, ingrese a la opción 4");
-							}
-				break;
+		case 7:
+			if (flagArcadeAlta == 1) {
+				mostrarArcades(listaArcades, CANT_ARCADES);
+			} else {
+				printf("No han dado de ARCADES, ingrese a la opción 4");
+			}
+			break;
 
-			case 8:
-				if(flagArcadeAlta == 1){
-					arcades_ListarJuegos(listaArcades, CANT_ARCADES);
-					}
-					else{
-							printf("No han dado de alta ARCADES, ingrese a la opción 4");
-							}
+		case 8:
+			if (flagArcadeAlta == 1) {
+				arcades_ListarJuegos(listaArcades, CANT_ARCADES);
+			} else {
+				printf("No han dado de alta ARCADES, ingrese a la opción 4");
+			}
 
-				break;
+			break;
 
-			case 9:
-				if(flagAltaSalon ==1 && flagArcadeAlta == 1){
+		case 9:
+			if (flagAltaSalon == 1 && flagArcadeAlta == 1) {
 
-				 mostrarSubMenu(&subOpcionMenu);
+				mostrarSubMenu(&subOpcionMenu);
 
-				 switch (subOpcionMenu)
-				 {
+				switch (subOpcionMenu) {
 
-				 		case 1:
-				 			mostrarSalonesConMasArcades(listaSalones, CANT_SALONES, listaArcades, CANT_ARCADES);
+				case 1:
+					mostrarSalonesConMasArcades(listaSalones, CANT_SALONES,
+							listaArcades, CANT_ARCADES);
 
-				 			break;
+					break;
 
-				 		case 2:
+				case 2:
 
-				 			mostrarArcadesPorCantidadDeJugadores(listaArcades,  CANT_ARCADES);
+					mostrarArcadesPorCantidadDeJugadores(listaArcades,
+							CANT_ARCADES);
 
-				 			break;
+					break;
 
-				 		case 3:
+				case 3:
 
-				 			mostrarPorIdSalonesConArcades(listaSalones, CANT_SALONES,
-				 					listaArcades, CANT_ARCADES);
+					mostrarPorIdSalonesConArcades(listaSalones, CANT_SALONES,
+							listaArcades, CANT_ARCADES);
 
-							break;
+					break;
 
-				 		case 4:
+				case 4:
 
-				 			mostrarArcadesDeUnSalones(listaSalones, CANT_SALONES,
-				 					listaArcades, CANT_ARCADES);
+					mostrarArcadesDeUnSalon(listaSalones, CANT_SALONES,
+							listaArcades, CANT_ARCADES);
 
-				 			break;
+					break;
 
-				 		case 5:
+				case 5:
 
-				 			break;
+					break;
 
-				 		case 6:
+				case 6:
 
-				 			break;
+					break;
 
-				 		case 7:
+				case 7:
+					imprimirCantidadDeArcadesPorJuego(listaArcades,
+							CANT_ARCADES);
 
-				 			break;
+					break;
 
-				 		case 8:
-				 			printf("A salido del programa");
-				 			resp = !'s';
-				 			break;
+				case 8:
+					mostrarSalonesConMasArcadesAux(listaSalones, CANT_SALONES,
+							listaArcades, CANT_ARCADES);
 
-				 }
+					break;
+
+				case 9:
+					imprimnirPromedioDeAracdesPorSalon(listaSalones,
+							CANT_SALONES, listaArcades, CANT_ARCADES);
+
+					break;
+
+				case 10:
+					printf("A salido del programa");
+					resp = !'s';
+					break;
+
 				}
-				else{
-					printf("No han dado de alta SALONES ni ARCADES, ingrese a la opción 1 y 4");
-				}
-				 break;
+			} else {
+				printf(
+						"No han dado de alta SALONES ni ARCADES, ingrese a la opción 1 y 4");
+			}
+			break;
 
-			case 10:
-				printf("A salido del programa");
-				resp = !'s';
-				break;
+		case 10:
+			printf("A salido del programa");
+			resp = !'s';
+			break;
 
 		}
-	}while (resp == 's');
+	} while (resp == 's');
 
 	return EXIT_SUCCESS;
 }
